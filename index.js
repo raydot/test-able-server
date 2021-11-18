@@ -11,9 +11,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,POST');
-  res.header('Access-Control-Allow-Headers', 'Content-type, Authorization');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHheader('Access-Control-Allow-Methods', 'GET,POST');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With,content-type,Authorization'
+  );
   next();
 });
 
