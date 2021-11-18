@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Origin', 'https://test-able2021.com');
   res.setHheader('Access-Control-Allow-Methods', 'GET,POST');
   res.setHeader(
     'Access-Control-Allow-Headers',
