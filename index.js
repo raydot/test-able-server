@@ -39,9 +39,7 @@ app.options('/video/token', cors());
 
 const sendTokenResponse = (token, res) => {
   res.send(
-    JSON.stringify({
       token: token.toJwt(),
-    })
   );
 };
 
