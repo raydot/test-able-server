@@ -7,12 +7,13 @@ const { videoToken } = require('./tokens');
 const { NetworkInstance } = require('twilio/lib/rest/supersim/v1/network');
 
 const app = express();
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
 app.use(function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', 'https://test-able2021.com');
-  res.setHheader('Access-Control-Allow-Methods', 'GET,POST');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-Requested-With,content-type,Authorization'
@@ -35,14 +36,14 @@ app.get('/api/greeting', cors(), (req, res) => {
   res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
 });
 
-app.get('/video/token', cors(), (req, res) => {
+app.get('/video/token', (req, res) => {
   const identity = req.query.identity;
   const room = req.query.room;
   const token = videoToken(identity, room, config);
   sendTokenResponse(token, res);
 });
 
-app.post('/video/token', cors(), (req, res) => {
+app.post('/video/token', (req, res) => {
   const identity = req.body.identity;
   const room = req.body.room;
   const token = videoToken(identity, room, config);
