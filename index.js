@@ -6,6 +6,9 @@ const pino = require('express-pino-logger')();
 const { videoToken } = require('./tokens');
 const { NetworkInstance } = require('twilio/lib/rest/supersim/v1/network');
 const { rest } = require('lodash');
+const {
+  AddOnResultContext,
+} = require('twilio/lib/rest/api/v2010/account/recording/addOnResult');
 
 const app = express();
 app.use(cors());
@@ -21,6 +24,8 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
+app.options('/video/token', cors());
 
 const sendTokenResponse = (token, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
