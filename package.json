@@ -1,0 +1,30 @@
+{
+  "name": "test-able-server",
+  "version": "1.0.0",
+  "description": "Server for testABLE application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raydot/test-able-server.git"
+  },
+  "keywords": [
+    "express",
+    "javascript",
+    "accessability"
+  ],
+  "author": "Dave Kanter, Vaibhao Dhage, Rahul Patel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raydot/test-able-server/issues"
+  },
+  "homepage": "https://github.com/raydot/test-able-server#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-pino-logger": "^6.0.0",
+    "twilio": "^3.71.2"
+  }
+}
