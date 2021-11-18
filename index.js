@@ -12,6 +12,7 @@ const {
 
 const app = express();
 app.use(cors());
+cors({ credentials: true, origin: true });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
@@ -28,8 +29,6 @@ app.use(function (req, res, next) {
 app.options('/video/token', cors());
 
 const sendTokenResponse = (token, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Content-Type', 'application/json');
   res.send(
     JSON.stringify({
       token: token.toJwt(),
