@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const { videoToken } = require('./tokens');
 const { NetworkInstance } = require('twilio/lib/rest/supersim/v1/network');
-const { rest } = require('lodash');
+const { rest, findIndex } = require('lodash');
 const {
   AddOnResultContext,
 } = require('twilio/lib/rest/api/v2010/account/recording/addOnResult');
@@ -28,6 +28,8 @@ app.use(pino);
 
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'GET,POST');
   res.header(
     'Access-Control-Allow-Headers',
     'Origin, X-Requested-With, Content-Type, Accept'
@@ -39,7 +41,9 @@ app.options('/video/token', cors());
 
 const sendTokenResponse = (token, res) => {
   res.send(
+    JSON.stringify({
       token: token.toJwt(),
+    })
   );
 };
 
