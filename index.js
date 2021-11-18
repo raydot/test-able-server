@@ -4,15 +4,15 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const { videoToken } = require('./tokens');
-const { NetworkInstance } = require('twilio/lib/rest/supersim/v1/network');
-const { rest, findIndex } = require('lodash');
-const {
-  AddOnResultContext,
-} = require('twilio/lib/rest/api/v2010/account/recording/addOnResult');
+// const { NetworkInstance } = require('twilio/lib/rest/supersim/v1/network');
+// const { rest, findIndex } = require('lodash');
+// const {
+//   AddOnResultContext,
+// } = require('twilio/lib/rest/api/v2010/account/recording/addOnResult');
 
 const app = express();
 app.use(cors());
-cors({ credentials: true, origin: true });
+// cors({ credentials: true, origin: true });
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(pino);
@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.options('/video/token', cors());
+app.options('*', cors());
 
 const sendTokenResponse = (token, res) => {
   res.send(
