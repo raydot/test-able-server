@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const pino = require('express-pino-logger')();
 const { videoToken } = require('./tokens');
 const { NetworkInstance } = require('twilio/lib/rest/supersim/v1/network');
+const { rest } = require('lodash');
 
 const app = express();
 app.use(cors());
@@ -22,6 +23,7 @@ app.use(function (req, res, next) {
 });
 
 const sendTokenResponse = (token, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'application/json');
   res.send(
     JSON.stringify({
